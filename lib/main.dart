@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc_provider/src/providers/name_provider.dart';
-import 'package:flutter_bloc_provider/src/screens/welcome.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_lib/src/app.dart';
 
-void main() {
-  runApp(MyApp());
+/// Custom [BlocObserver] which observes all bloc and cubit instances.
+class SimpleBlocObserver extends BlocObserver {
+  @override
+  void onEvent(Bloc bloc, Object event) {
+    super.onEvent(bloc, event);
+    print(event);
+  }
+
+  @override
+  void onTransition(Bloc bloc, Transition transition) {
+    super.onTransition(bloc, transition);
+    print(transition);
+  }
+
+  @override
+  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
+    print(error);
+    super.onError(bloc, error, stackTrace);
+  }
 }
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (BuildContext context) => NameProvider(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Bloc Provider',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: WelcomePage(),
-      ),
-    );
-  }
+void main() {
+  Bloc.observer = SimpleBlocObserver();
+  runApp(App());
 }

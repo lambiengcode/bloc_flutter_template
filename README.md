@@ -1,4 +1,4 @@
-# flutter_bloc_provider
+# flutter_bloc_lib
 
 A new Flutter project.
 

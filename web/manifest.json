@@ -1,6 +1,6 @@
 {
-    "name": "flutter_bloc_provider",
-    "short_name": "flutter_bloc_provider",
+    "name": "flutter_bloc_lib",
+    "short_name": "flutter_bloc_lib",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
